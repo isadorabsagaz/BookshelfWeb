@@ -1,0 +1,14 @@
+:root {
+    font-family: "Poppins", serif;
+}
+
+body {
+    background-color: #F4F4F4;
+    margin: 0 auto;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}

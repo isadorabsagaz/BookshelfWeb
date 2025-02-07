@@ -4,6 +4,8 @@ import SearchBar from "./components/SearchBar.tsx";
 import {BookModel} from "./models/book-model.tsx";
 import {useEffect, useState} from "react";
 import {searchBooks} from "./services/openLibrary.ts";
+import Header from "./components/Header.tsx";
+import {Outlet} from "react-router-dom";
 
 function App() {
 
@@ -24,14 +26,19 @@ function App() {
 
     return (
         <>
-            <div className={"container"}>
-                <p>Find your books</p>
-                <SearchBar onSearch={setQuery}/>
+            <div>
+                <Header />
+                <Outlet />
+                <div className={"container"}>
+                    <p>Find your books</p>
+                    <SearchBar onSearch={setQuery}/>
+                </div>
+
+                <div className={"books-grid"}>
+                    <BookList books={books}/>
+                </div>
             </div>
 
-            <div className={"books-grid"}>
-                <BookList books={books}/>
-            </div>
         </>
     )
 }

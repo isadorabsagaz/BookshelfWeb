@@ -14,6 +14,7 @@
         width: 200px;
         height: 450px;
 
+        place-items: center;
         justify-self: center;
         align-self: center;
 
@@ -36,12 +37,12 @@
         }
 
         .title {
-            font-size: 20px;
+            font-size: 18px;
             margin: 10px 0 5px 0;
         }
         .author {
             font-size: 16px;
-            margin: 5px 0;
+            margin: 10px 0;
         }
         .year {
             font-size: 14px;
@@ -52,13 +53,15 @@
             font-family: "Poppins", serif;
             font-weight: 400;
 
-            width: 50%;
+            width: 100%;
 
             border-radius: 30px;
             border: none;
             background-color: #ccf1ea;
 
             box-shadow: 0 4px #789e9c;
+
+            margin: 5px;
 
             cursor: pointer;
         }
