@@ -1,4 +1,4 @@
-import "../css/Signup.css";
+import "../css/LogSig.css";
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
@@ -31,31 +31,40 @@ const Signup = () => {
 
     return (
         <div>
-            <div className={"signup-container"}>
+            <div className={"log-sub-container"}>
                 {error && <p style={{color: "red"}}>{error}</p>}
-                <form onSubmit={handleSignup}>
-                    <input type="text"
+
+                <p>Sign up to Bookshelf</p>
+
+                <form className={"log-sub-form"} onSubmit={handleSignup}>
+
+                    <input className={"log-sub-input"}
+                           type="text"
                            placeholder="Username"
                            value={username}
                            onChange={(e) => setUsername(e.target.value)}
                            required
                     />
 
-                    <input type="text"
+                    <input className={"log-sub-input"}
+                           type="text"
                            placeholder="Email"
                            value={email}
                            onChange={(e) => setEmail(e.target.value)}
                            required
                     />
 
-                    <input type="text"
+                    <input className={"log-sub-input"}
+                           type="text"
                            placeholder="Password"
                            value={password}
                            onChange={(e) => setPassword(e.target.value)}
                            required
                     />
 
-                    <button type="submit">Sign up</button>
+                    <button className={"log-sub-button"}
+                            type="submit">Sign up</button>
+
                 </form>
             </div>
         </div>

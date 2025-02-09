@@ -1,4 +1,4 @@
-import "../css/Login.css"
+import "../css/LogSig.css"
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -33,14 +33,14 @@ const Login = () => {
 
     return (
         <div>
-            <div className={"login-container"}>
+            <div className={"log-sub-container"}>
                 {error && <p style={{color: "red"}}>{error}</p>}
 
                 <p>Log in to your account</p>
 
-                <form className={"login-form"} onSubmit={handleLogin}>
+                <form className={"log-sub-form"} onSubmit={handleLogin}>
 
-                    <input className={"login-input"}
+                    <input className={"log-sub-input"}
                            type="text"
                            placeholder="Email"
                            value={email}
@@ -48,7 +48,7 @@ const Login = () => {
                            required
                     />
 
-                    <input className={"login-input"}
+                    <input className={"log-sub-input"}
                            type="text"
                            placeholder="Password"
                            value={password}
@@ -56,7 +56,7 @@ const Login = () => {
                            required
                     />
 
-                    <button className={"login-button"}
+                    <button className={"log-sub-button"}
                             type="submit">Log in</button>
                 </form>
 

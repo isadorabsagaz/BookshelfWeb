@@ -1,0 +1,9 @@
+.signup-page-container {
+    position: relative;
+    margin: 12em 30em 0 30em;
+    height: 60vh;
+
+    background-color: #F9F9F9;
+    box-shadow: #dfdfdf 2px 2px 5px;
+    border-radius: 5px;
+}

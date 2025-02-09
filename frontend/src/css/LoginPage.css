@@ -16,6 +16,7 @@
         position: relative;
 
         box-shadow: #dfdfdf 2px 2px 5px;
+        border-radius: 5px;
     }
 
     .signup-div {
@@ -29,6 +30,7 @@
         background-color: #F9F9F9;
 
         box-shadow: #dfdfdf 2px 2px 5px;
+        border-radius: 5px;
 
         p {
             font-size: 24px;

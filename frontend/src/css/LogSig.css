@@ -1,4 +1,4 @@
-.login-container {
+.log-sub-container {
     position: absolute;
 
     height: 100%;
@@ -14,14 +14,14 @@
         font-weight: 300;
     }
 
-    .login-form {
+    .log-sub-form {
         display: flex;
         flex-direction: column;
 
         height: 75%;
         width: 75%;
 
-        .login-input {
+        .log-sub-input {
             height: 3em;
             margin: 1em;
             padding-left: 0.5em;
@@ -30,11 +30,11 @@
             border-color: transparent;
             background-color: #F0F0F0;
         }
-        .login-input:focus {
+        .log-sub-input:focus {
             outline: none;
         }
 
-        .login-button {
+        .log-sub-button {
             font-family: "Poppins", serif;
             font-weight: 400;
 
@@ -52,9 +52,9 @@
             cursor: pointer;
         }
 
-        .login-button:hover {background-color: #B1D6CD;}
+        .log-sub-button:hover {background-color: #B1D6CD;}
 
-        .login-button:active {
+        .log-sub-button:active {
             background-color: #B1D6CD;
             box-shadow: 0 3px #527876;
             transform: translateY(4px);
