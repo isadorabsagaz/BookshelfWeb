@@ -29,7 +29,7 @@ function App() {
             <div>
                 <Header />
                 <Outlet />
-                <div className={"container"}>
+                <div className={"app-container"}>
                     <p>Find your books</p>
                     <SearchBar onSearch={setQuery}/>
                 </div>
