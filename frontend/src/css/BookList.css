@@ -1,18 +1,18 @@
 .book-container {
-    margin: 5em 3em;
+    margin: 4em 3em;
 
     .books-grid {
         display: grid;
-        grid-template-columns: repeat(4, 300px);
-        gap: 1em 0.5em;
+        grid-template-columns: repeat(4, minmax(3em, 1fr));
+        gap: 2em 3em;
 
         justify-content: center;
-        margin: 3em 1em;
+        margin: 3em 5em;
     }
 
     .book {
-        width: 200px;
-        height: 450px;
+        width: 75%;
+        height: 90%;
 
         place-items: center;
         justify-self: center;
@@ -27,53 +27,50 @@
         border-radius: 5px;
 
         img {
-            width: 160px;
-            height: 260px;
+            width: 150px;
+            height: 250px;
             cursor: pointer;
 
             box-shadow: #dfdfdf 2px 2px 5px;
         }
 
-        p {
-            cursor: pointer;
-        }
-
-        .title {
-            font-size: 18px;
-            margin: 10px 0 5px 0;
-        }
-        .author {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .year {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        .add-to-button {
-            font-family: "Poppins", serif;
-            font-weight: 400;
-
+        .book-info {
             width: 100%;
+            height: fit-content;
+            margin: 0.5em;
 
-            border-radius: 30px;
-            border: none;
-            background-color: #ccf1ea;
+            p { cursor: pointer;}
 
-            box-shadow: 0 4px #789e9c;
+            .title { font-size: 16px;}
 
-            margin: 5px;
+            .author { font-size: 14px;}
 
-            cursor: pointer;
-        }
+            .year { font-size: 12px;}
 
-        .add-to-button:hover {background-color: #B1D6CD;}
+            .add-to-button {
+                font-family: "Poppins", serif;
+                font-weight: 400;
 
-        .add-to-button:active {
-            background-color: #B1D6CD;
-            box-shadow: 0 2px #527876;
-            transform: translateY(4px);
+                width: 75%;
+
+                border-radius: 30px;
+                border: none;
+                background-color: #ccf1ea;
+
+                box-shadow: 0 4px #789e9c;
+
+                cursor: pointer;
+            }
+
+            .add-to-button:hover {
+                background-color: #B1D6CD;
+            }
+
+            .add-to-button:active {
+                background-color: #B1D6CD;
+                box-shadow: 0 2px #527876;
+                transform: translateY(4px);
+            }
         }
     }
 }
