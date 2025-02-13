@@ -1,6 +1,4 @@
 .log-sub-container {
-    position: absolute;
-
     height: 100%;
     width: 100%;
 
@@ -8,6 +6,21 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    .error {
+        background-color: #da2244;
+        color: white;
+        font-weight: 500;
+
+        width: 75%;
+
+        margin-top: 0.5em;
+
+        border-radius: 5px;
+        box-shadow: #dfdfdf 2px 2px 5px;
+
+        justify-items: center;
+    }
 
     p {
         font-size: 24px;
@@ -41,7 +54,7 @@
             width: 100%;
             height: 3em;
 
-            margin: 5em 0;
+            margin: 3em 0;
 
             border-radius: 30px;
             border: none;

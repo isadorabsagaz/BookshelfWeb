@@ -1,6 +1,9 @@
 import "../css/LogSig.css";
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from "../services/api";
+
+const SIGNUP_URL = "/api/auth/signup";
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -13,26 +16,27 @@ const Signup = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:3000/signup", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({name: name, email: email, password: password}),
-            });
+            const response = await axios.post(SIGNUP_URL,
+                JSON.stringify({name, email, password}), {withCredentials: true}
+            );
 
-            if (!response.ok) {
-                throw new Error("Error creating account");
-            }
+            console.log("Created user: ",JSON.stringify(response.data));
+            alert("Account created successfully!");
 
             navigate("/login");   //redirect to login page after sign up
-        } catch (e:any) {
-            setError(e?.response?.data?.error || "Error creating account");
+        } catch (e: any) {
+            console.error("Error creating account: ", e.response?.data || e.message);
+            setError(e?.response?.data?.message || "Error creating account");
         }
     };
 
     return (
         <div>
             <div className={"log-sub-container"}>
-                {error && <p style={{color: "red"}}>{error}</p>}
+
+                <div className={"error"}>
+                    {error && <p>{error}</p>}
+                </div>
 
                 <p>Sign up to Bookshelf</p>
 
@@ -63,7 +67,8 @@ const Signup = () => {
                     />
 
                     <button className={"log-sub-button"}
-                            type="submit">Sign up</button>
+                            type="submit">Sign up
+                    </button>
 
                 </form>
             </div>
