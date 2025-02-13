@@ -1,6 +1,9 @@
 import "../css/LogSig.css"
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import axios from "../services/api";
+
+const LOGIN_URL = "/api/auth/login";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,28 +16,29 @@ const Login = () => {
 
         try {
             //request HTTP POST to backend server to auth user
-            const response = await fetch("http://localhost:3000/login", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},                      //request in form of JSON
-                body: JSON.stringify({email: email, password: password}),     //JSON with {email, password}
-            });
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({email, password}), {withCredentials: true}
+            );
 
-            if (!response.ok) {
-                throw new Error("User not registered");
-            }
+            console.log("Logged user: ", JSON.stringify(response.data));
+            alert("Logged in successfully!");     //converts response to JS Object
 
-            const data = await response.json();         //converts response to JS Object
-            localStorage.setItem("token", data.token);  //store token in localStorage if login is successful
-            navigate("/");                          //redirects to App
+            localStorage.setItem("token", response.data.token);  //store token in localStorage if login is successful
+            navigate("/");   //redirects to App
+
         } catch (e: any) {
-            setError(e.message?.response?.data?.error || "Error login in account");
+            console.error("Error logging account: ", e.response?.data || e.message);
+            setError(e?.response?.data?.message || "Error login in account");
         }
     };
 
     return (
         <div>
             <div className={"log-sub-container"}>
-                {error && <p style={{color: "red"}}>{error}</p>}
+
+                <div className={"error"}>
+                {error && <p>{error}</p>}
+                </div>
 
                 <p>Log in to your account</p>
 
@@ -57,7 +61,8 @@ const Login = () => {
                     />
 
                     <button className={"log-sub-button"}
-                            type="submit">Log in</button>
+                            type="submit">Log in
+                    </button>
                 </form>
 
             </div>
