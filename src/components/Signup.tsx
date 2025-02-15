@@ -59,7 +59,7 @@ const Signup = () => {
                     />
 
                     <input className={"log-sub-input"}
-                           type="text"
+                           type="password"
                            placeholder="Password"
                            value={password}
                            onChange={(e) => setPassword(e.target.value)}

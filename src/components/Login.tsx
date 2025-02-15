@@ -1,9 +1,14 @@
 import "../css/LogSig.css"
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode, JwtPayload} from "jwt-decode";
 import axios from "../services/api";
 
 const LOGIN_URL = "/api/auth/login";
+
+interface CustomJwtPayload extends JwtPayload {
+    id: string;
+}
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,17 +25,25 @@ const Login = () => {
                 JSON.stringify({email, password}), {withCredentials: true}
             );
 
-            console.log("Logged user: ", JSON.stringify(response.data));
-            alert("Logged in successfully!");     //converts response to JS Object
+            console.log("Logged user: ", JSON.stringify(response.data));    //converts response to JS Object
+            alert("Logged in successfully!");
 
-            localStorage.setItem("token", response.data.token);  //store token in localStorage if login is successful
-            navigate("/");   //redirects to App
+            const token = response.data.token;
+            localStorage.setItem("token", token);     //store token in localStorage if login is successful
+
+            const decoded = jwtDecode<CustomJwtPayload>(token)
+            console.log(decoded.id);
+            localStorage.setItem("userId", decoded.id);
+
+            navigate("/user");   //redirects to UserPage
 
         } catch (e: any) {
             console.error("Error logging account: ", e.response?.data || e.message);
             setError(e?.response?.data?.message || "Error login in account");
         }
     };
+
+    //const changeLoginButton = async () => {}
 
     return (
         <div>
@@ -53,7 +66,7 @@ const Login = () => {
                     />
 
                     <input className={"log-sub-input"}
-                           type="text"
+                           type="password"
                            placeholder="Password"
                            value={password}
                            onChange={(e) => setPassword(e.target.value)}
