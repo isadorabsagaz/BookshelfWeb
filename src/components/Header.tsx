@@ -9,11 +9,18 @@ const Header = () => {
     return (
         <div>
             <header className="app-header">
+
+                <div className="logo"
+                    onClick={() => navigate("/")}>
+
                     <img src={bookshelfLogo} alt="bookshlf icon"/>
                     <p className={"title"}>Bookshelf</p>
-                    <button className={"log-button"}
-                    onClick={ () => navigate('/login')}
-                    >Log in</button>
+
+                </div>
+                <button className={"log-button"}
+                        onClick={() => navigate('/login')}
+                >Log in
+                </button>
             </header>
         </div>
     );
