@@ -2,8 +2,8 @@ import "../css/UserProfile.css"
 import  {useEffect, useState} from 'react';
 import {UserModel} from "../models/user-model.tsx";
 import {BookModel} from "../models/book-model.tsx";
+import UserBookshelf from "./UserBookshelf.tsx";
 import axios from "../services/api.ts";
-import BookList from "./BookList.tsx";
 
 const UserProfile = () => {
 
@@ -30,6 +30,7 @@ const UserProfile = () => {
                     {
                         headers: {Authorization: `Bearer ${token}`},
                     });
+                console.log(booksResponse.data);
                 setUserBookshelf(booksResponse.data)
 
             } catch (e:any) {
@@ -39,6 +40,10 @@ const UserProfile = () => {
 
         if(token) { fetchData().then() }
     }, [token]);
+
+    const removeBookFromShelf = (bookKey : string) => {
+        setUserBookshelf((prevBooks) => prevBooks.filter((book) => book.key !== bookKey));
+    };
 
     return (
         <div>
@@ -55,7 +60,7 @@ const UserProfile = () => {
 
             <div className={"books-grid"}>
                 {userBookshelf.length > 0 ? (
-                    <BookList books={userBookshelf}></BookList>
+                    <UserBookshelf books={userBookshelf} onDelete={removeBookFromShelf}/>
                 ) : (
                     <p>Your shelf is empty... add some books to it</p>
                 )}

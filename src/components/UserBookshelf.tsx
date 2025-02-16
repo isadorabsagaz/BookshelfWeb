@@ -1,34 +1,37 @@
-import "../css/BookList.css"
+import "../css/BookList.css";
+import "../css/UserBookshelf.css";
 import {BookModel} from "../models/book-model";
 import noCoverImage from "../assets/noCoverImage.jpg";
+import axios from "../services/api";
 
-import axios from "../services/api.ts";
-
-
-type BookListProps = {
+type BookshelfProps = {
     books: BookModel[];
+    onDelete: (book:string) => void;
 }
 
-const BookList = ({books}: BookListProps) => {
+const UserBookshelf = ({books, onDelete}: BookshelfProps) => {
 
-    const handleAddBook = async (book: BookModel) => {
+    const handleDeleteBook = async (book: BookModel) => {
 
         try {
             const token = localStorage.getItem("token");
             const userId = localStorage.getItem("userId");
 
-            const BOOKS_URL = `api/user/${userId}/books`;
+            const BOOKS_URL = `api/user/${userId}/books/${encodeURIComponent(book.key)}`;
 
-            const response = await axios.post(BOOKS_URL, (book),
-                {
-                    headers: {Authorization: `Bearer ${token}`},
-                });
+            const response = await axios.delete(BOOKS_URL, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
 
-            console.log("Book added to shelf", response.data)
+            onDelete(book.key); //calls function from UserProfile to remove book
+
+            console.log("Book removed from shelf", response.data)
         } catch (e: any) {
-            console.log("Error adding book: ", e.response?.data || e.message)
+            console.log("Error removing book: ", e.response?.data || e.message)
         }
-    }
+    };
 
     return (
         <div className={"book-container"}>
@@ -45,14 +48,14 @@ const BookList = ({books}: BookListProps) => {
 
                         <div className={"book-info"}>
                             <p className={"title"}>{book.title}</p>
-                            <p className={"author"}>Author: {book.author_name?.[0]}</p>
+                            <p className={"author"}>Author: {book.author_name}</p>
                             <p className={"year"}>{book.first_publish_year}</p>
 
                             <div>
-                                <button className={"add-to-button"}
+                                <button className={"delete-book-button"}
                                         type="button"
-                                        onClick={() => handleAddBook(book)}
-                                >add to shelf
+                                        onClick={() => handleDeleteBook(book)}
+                                >delete
                                 </button>
                             </div>
                         </div>
@@ -65,4 +68,4 @@ const BookList = ({books}: BookListProps) => {
     );
 };
 
-export default BookList;
+export default UserBookshelf;

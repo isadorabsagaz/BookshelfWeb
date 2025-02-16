@@ -9,7 +9,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import UserPage from "./pages/UserPage";
 
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
     },
 
     {
-        path: "/user",
+        path: `/user`,
         element: <UserPage/>,
         errorElement: <NotFoundPage/>
     }

@@ -35,7 +35,7 @@ const Login = () => {
             console.log(decoded.id);
             localStorage.setItem("userId", decoded.id);
 
-            navigate("/user");   //redirects to UserPage
+            navigate(`/user`);   //redirects to UserPage
 
         } catch (e: any) {
             console.error("Error logging account: ", e.response?.data || e.message);
