@@ -42,21 +42,24 @@ const UserProfile = () => {
     }, [token]);
 
     const removeBookFromShelf = (bookKey : string) => {
-        setUserBookshelf((prevBooks) => prevBooks.filter((book) => book.key !== bookKey));
+        setUserBookshelf((prevBooks) =>
+            prevBooks.filter((book) => book.key !== bookKey));
     };
 
     return (
         <div>
             {user ? (
                 <div className={"user-info"}>
-                    <p>{user.name}'s shelf</p>
-                    <p>{user.email}</p>
+                    <p className={"user-name"}>{user.name}'s shelf</p>
+                    <p className={"user-email"}>{user.email}</p>
+
+                    <div>
+                        <button className={"edit-button"}>edit</button>
+                    </div>
+
                 </div>
             ) : (<p>User info not available</p>)}
 
-            <div className={"edit-button"}>
-                <button>edit</button>
-            </div>
 
             <div className={"books-grid"}>
                 {userBookshelf.length > 0 ? (
