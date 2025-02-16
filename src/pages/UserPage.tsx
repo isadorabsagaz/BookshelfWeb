@@ -66,7 +66,7 @@ const UserPage = () => {
 
                         <div>
                             <button className={"edit-button"}
-                                    onClick={() => navigate('/profile')}
+                                    onClick={() => navigate('/user/profile')}
                             >edit</button>
                         </div>
 

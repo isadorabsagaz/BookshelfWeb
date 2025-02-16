@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import UserPage from "./pages/UserPage";
+import ProfilePage from "./pages/ProfilePage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,12 @@ const router = createBrowserRouter([
         path: `/user`,
         element: <UserPage/>,
         errorElement: <NotFoundPage/>
+    },
+    {
+        path: `/user/profile`,
+        element: <ProfilePage/>
     }
+
 ]);
 
 createRoot(document.getElementById('root')!).render(
