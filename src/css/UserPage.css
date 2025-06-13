@@ -22,8 +22,9 @@
             font-family: "Poppins", serif;
             font-weight: 400;
 
-            width: 4em;
+            width: fit-content;
             height: 2em;
+            margin: 0 0.5em;
 
             border-radius: 30px;
             border: none;

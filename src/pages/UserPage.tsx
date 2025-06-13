@@ -2,10 +2,10 @@ import "../css/UserPage.css"
 import {Outlet, useNavigate} from "react-router-dom";
 import Header from "../components/Header";
 import {useEffect, useState} from "react";
-import {UserModel} from "../models/user-model.tsx";
-import {BookModel} from "../models/book-model.tsx";
-import axios from "../services/api.ts";
-import UserBookshelf from "../components/UserBookshelf.tsx";
+import {UserModel} from "../models/user-model";
+import {BookModel} from "../models/book-model";
+import UserBookshelf from "../components/UserBookshelf";
+import axios from "../services/api";
 
 const UserPage = () => {
 
@@ -52,6 +52,12 @@ const UserPage = () => {
             prevBooks.filter((book) => book.key !== bookKey));
     };
 
+    const handleLogOut = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        navigate("/");
+    };
+
     return (
 
         <div>
@@ -64,10 +70,16 @@ const UserPage = () => {
                         <p className={"user-name"}>{user.name}'s shelf</p>
                         <p className={"user-email"}>{user.email}</p>
 
-                        <div>
+                        <div className={"buttons"}>
                             <button className={"edit-button"}
                                     onClick={() => navigate('/user/profile')}
-                            >edit</button>
+                            >edit
+                            </button>
+
+                            <button className={"edit-button"}
+                                    onClick={handleLogOut}
+                            >log out
+                            </button>
                         </div>
 
                     </div>
