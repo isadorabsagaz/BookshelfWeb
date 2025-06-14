@@ -2,6 +2,7 @@ import "../css/LogSig.css";
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "../services/api";
+import { toast } from "react-toastify";
 
 const SIGNUP_URL = "/api/auth/signup";
 
@@ -21,7 +22,7 @@ const Signup = () => {
             );
 
             console.log("Created user: ",JSON.stringify(response.data));
-            alert("Account created successfully!");
+            toast.success("Conta criada com sucesso!");
 
             navigate("/login");   //redirect to login page after sign up
         } catch (e: any) {

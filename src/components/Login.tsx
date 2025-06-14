@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
+import { toast } from "react-toastify";
 
 const LOGIN_URL = "/api/auth/login";
 
@@ -24,11 +25,10 @@ const Login = () => {
 
       const token = response.data.token;
       login(token);
-      alert("Logged in successfully!");
+      toast.success("Logado com sucesso!");
       navigate(`/user`);   //redirects to UserPage
 
     } catch (e: any) {
-      console.error("Error logging account: ", e.response?.data || e.message);
       setError(e?.response?.data?.message || "Error login in account");
     }
   };

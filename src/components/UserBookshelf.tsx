@@ -4,6 +4,7 @@ import { BookModel } from "../models/book-model";
 import noCoverImage from "../assets/noCoverImage.jpg";
 import axios from "../services/api";
 import { useAuth } from "../contexts/AuthContext.tsx";
+import { toast } from "react-toastify";
 
 type BookshelfProps = {
   books: BookModel[];
@@ -27,9 +28,10 @@ const UserBookshelf = ({ books, onDelete }: BookshelfProps) => {
       });
 
       onDelete(book.key); //calls function from UserProfile to remove book
-
+      toast.success("Livro removido!")
       console.log("Book removed from shelf", response.data)
     } catch (e: any) {
+      toast.error("Erro ao deletar livro")
       console.log("Error removing book: ", e.response?.data || e.message)
     }
   };

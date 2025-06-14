@@ -3,6 +3,7 @@ import bookshelfLogo from "../assets/BookshelfIcon.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/api";
 import { useAuth } from "../contexts/AuthContext.tsx";
+import { toast } from "react-toastify";
 
 
 const Header = () => {
@@ -15,7 +16,7 @@ const Header = () => {
     const PDF_URL = `api/user/${userId}/books/pdf`;
 
     if (!userId || !token) {
-      alert("User not authenticated!");
+      toast.error("Usuário não autenticado!");
       return;
     }
 
@@ -40,7 +41,7 @@ const Header = () => {
 
     } catch (err: any) {
       console.log("Erro ao baixar PDF: ", err.response?.data || err.message);
-      alert("Erro ao baixar o PDF");
+      toast.error("Erro ao baixar o PDF");
     }
   };
 

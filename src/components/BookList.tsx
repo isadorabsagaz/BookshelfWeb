@@ -4,6 +4,7 @@ import noCoverImage from "../assets/noCoverImage.jpg";
 
 import axios from "../services/api.ts";
 import { useAuth } from "../contexts/AuthContext.tsx";
+import { toast } from "react-toastify";
 
 
 type BookListProps = {
@@ -25,8 +26,10 @@ const BookList = ({ books }: BookListProps) => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
+      toast.success("Livro adicionado!");
       console.log("Book added to shelf", response.data)
     } catch (e: any) {
+      toast.error("Erro ao adicionar o livro");
       console.log("Error adding book: ", e.response?.data || e.message)
     }
   }

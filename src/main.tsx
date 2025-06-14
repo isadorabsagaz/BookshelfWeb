@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage";
 import UserPage from "./pages/UserPage";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <AuthProvider>
+            <ToastContainer position="bottom-right" autoClose={2500}/>
             <RouterProvider router={router}/>
         </AuthProvider>
     </StrictMode>,
