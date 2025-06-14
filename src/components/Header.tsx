@@ -1,9 +1,9 @@
 import "../css/Header.css";
-import bookshelfLogo from "../assets/BookshelfIcon.svg";
 import { useNavigate } from "react-router-dom";
-import axios from "../services/api";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import { toast } from "react-toastify";
+import bookshelfLogo from "../assets/BookshelfIcon.svg";
+import axios from "../services/api";
 
 
 const Header = () => {
@@ -20,13 +20,21 @@ const Header = () => {
       return;
     }
 
+    const downloadPromise = axios.get(PDF_URL, {
+      responseType: "blob",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    });
+
+    toast.promise(downloadPromise, {
+      pending: "Gerando PDF...",
+      success: "Download concluído!",
+      error: "Erro ao gerar o PDF",
+    });
+
     try {
-      const response = await axios.get(PDF_URL, {
-        responseType: "blob",
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await downloadPromise;
 
       const blob = new Blob([response.data], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
