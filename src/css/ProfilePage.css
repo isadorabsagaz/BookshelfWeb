@@ -1,3 +1,61 @@
 .edit-profile {
-  margin-top: 8em;
+
+  font-size: x-large;
+  margin-top: 10em;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .update-form {
+    display: flex;
+    flex-direction: column;
+
+    height: 50%;
+    width: 50%;
+  }
+
+  .update-input {
+    height: 3em;
+    margin: 1em;
+    padding-left: 0.5em;
+
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: #f0f0f0;
+  }
+  .update-input:focus {
+    outline: none;
+  }
+
+  .update-button {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+
+    width: 100%;
+    height: 3em;
+
+    margin: 3em 0;
+
+    border-radius: 30px;
+    border: none;
+    background-color: #ccf1ea;
+
+    box-shadow: 0 5px #789e9c;
+
+    cursor: pointer;
+  }
+
+  .update-button:hover {
+    background-color: #b1d6cd;
+  }
+
+  .update-button:active {
+    background-color: #b1d6cd;
+    box-shadow: 0 3px #527876;
+    transform: translateY(4px);
+  }
 }

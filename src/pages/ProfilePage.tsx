@@ -1,63 +1,64 @@
 import "../css/ProfilePage.css";
 import Header from "../components/Header.tsx";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-//import { useAuth } from "../contexts/AuthContext.tsx";
-//import axios from "axios";
-
-//const navigate = useNavigate();
+import { useAuth } from "../contexts/AuthContext.tsx";
+import axios from "../services/api";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  //const {userId} = useAuth();
-  //const [error, setError] = useState('');
+  const { userId } = useAuth();
 
-  // const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
-  //const UPDATE_URL = `/api/user/${userId}`;
+  const token = localStorage.getItem("token");
+
+  const UPDATE_URL = `/api/user/${userId}`;
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    /*try {
-            await axios.put(UPDATE_URL, {name, password}, {
-                headers: {Authorization: `Bearer ${token}`},
-            });
+    try {
+      await axios.put(UPDATE_URL, { name, password }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-            navigate('/user');
-        } catch (e:any){
-            console.error("Error updating user: ", e.response?.data || e.message);
-            setError(e?.response?.data?.message || "Error updating account");
-        }
-        */
+      toast.success("Informações atualizadas!");
+      navigate('/user');
+    } catch (e: any) {
+      toast.error("Não foi possível atualizar as informações");
+      console.error("Error updating user: ", e.response?.data || e.message);
+    }
   };
 
   return (
     <div>
-      <Header />
-      <Outlet />
+      <Header/>
+      <Outlet/>
 
       <div className={"edit-profile"}>
+        Edite seu perfil:
         <form className={"update-form"} onSubmit={handleUpdate}>
           <input
             className={"update-input"}
             type="text"
-            placeholder={"Username"}
+            placeholder={"Novo nome"}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
           <input
             className={"update-input"}
-            type="text"
-            placeholder={"Password"}
+            type="password"
+            placeholder={"Nova senha"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button className={"update-button"} type="submit">
-            save changes
+            salve as alterações
           </button>
         </form>
       </div>
