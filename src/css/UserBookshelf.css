@@ -1,25 +1,25 @@
 .delete-book-button {
-    font-family: "Poppins", serif;
-    font-weight: 400;
+  font-family: "Poppins", serif;
+  font-weight: 400;
 
-    width: 50%;
+  width: 50%;
 
-    border-radius: 30px;
-    border: none;
-    color: #F9F9F9;
-    background-color: #ff4b67;
+  border-radius: 30px;
+  border: none;
+  color: #f9f9f9;
+  background-color: #ff4b67;
 
-    box-shadow: 0 4px #c8243f;
+  box-shadow: 0 4px #c8243f;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .delete-book-button:hover {
-    background-color: #d80f35;
+  background-color: #d80f35;
 }
 
 .delete-book-button:active {
-    background-color: #d80f35;
-    box-shadow: 0 2px #800216;
-    transform: translateY(4px);
+  background-color: #d80f35;
+  box-shadow: 0 2px #800216;
+  transform: translateY(4px);
 }

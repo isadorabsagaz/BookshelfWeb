@@ -1,73 +1,75 @@
 .login-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8em;
+
+  height: 60vh;
+
+  margin: 12em 12em 0 12em;
+
+  .login-div {
+    height: 100%;
+    width: 100%;
+    background-color: #f9f9f9;
+    position: relative;
+
+    box-shadow: #dfdfdf 2px 2px 5px;
+    border-radius: 5px;
+  }
+
+  .signup-div {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    gap: 8em;
+    flex-direction: column;
 
-    height: 60vh;
+    height: 100%;
+    width: 100%;
+    background-color: #f9f9f9;
 
-    margin: 12em 12em 0 12em;
+    box-shadow: #dfdfdf 2px 2px 5px;
+    border-radius: 5px;
 
-    .login-div {
-        height: 100%;
-        width: 100%;
-        background-color: #F9F9F9;
-        position: relative;
-
-        box-shadow: #dfdfdf 2px 2px 5px;
-        border-radius: 5px;
+    p {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 0.5em;
+      text-align: center;
     }
 
-    .signup-div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+    .click-here-button {
+      font-family: "Poppins", serif;
+      font-weight: 400;
 
-        height: 100%;
-        width: 100%;
-        background-color: #F9F9F9;
+      text-decoration: none;
+      text-align: center;
 
-        box-shadow: #dfdfdf 2px 2px 5px;
-        border-radius: 5px;
+      color: #272727;
 
-        p {
-            font-size: 24px;
-            font-weight: 300;
-            margin: 0.5em;
-            text-align: center;
-        }
+      width: 75%;
+      height: 2em;
 
-        .click-here-button {
-            font-family: "Poppins", serif;
-            font-weight: 400;
+      margin: 5em 0;
 
-            text-decoration: none;
-            text-align: center;
+      border-radius: 30px;
+      border: none;
+      background-color: #ccf1ea;
 
-            color: #272727;
+      box-shadow: 0 5px #789e9c;
 
-            width: 75%;
-            height: 2em;
-
-            margin: 5em 0;
-
-            border-radius: 30px;
-            border: none;
-            background-color: #ccf1ea;
-
-            box-shadow: 0 5px #789e9c;
-
-            cursor: pointer;
-        }
-
-        .click-here-button:hover {background-color: #B1D6CD;}
-
-        .click-here-button:active {
-            background-color: #B1D6CD;
-            box-shadow: 0 3px #527876;
-            transform: translateY(4px);
-        }
+      cursor: pointer;
     }
+
+    .click-here-button:hover {
+      background-color: #b1d6cd;
+    }
+
+    .click-here-button:active {
+      background-color: #b1d6cd;
+      box-shadow: 0 3px #527876;
+      transform: translateY(4px);
+    }
+  }
 }

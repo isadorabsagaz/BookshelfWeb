@@ -1,72 +1,74 @@
 .app-header {
-    background-color: #B1D6CD;
-    position: fixed;
-    top: 0;
+  background-color: #b1d6cd;
+  position: fixed;
+  top: 0;
 
-    width: 100%;
-    height: 7em;
+  width: 100%;
+  height: 7em;
 
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .logo {
+    cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
 
-    .logo {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-
-        img {
-            padding-left: 1em;
-            width: fit-content;
-        }
-
-        .title {
-            font-weight: 200;
-            font-style: normal;
-            font-size: 48px;
-
-            padding-left: 1%;
-        }
+    img {
+      padding-left: 1em;
+      width: fit-content;
     }
 
-    .log-button {
-        font-family: "Poppins", serif;
-        font-weight: 400;
+    .title {
+      font-weight: 200;
+      font-style: normal;
+      font-size: 48px;
 
-        margin-left: auto;
-        margin-right: 3%;
-
-        width: 6em;
-        height: 40%;
-
-        border-radius: 30px;
-        border: none;
-        background-color: #DDDDDD;
-
-        box-shadow: 0 6px #535353;
-
-        cursor: pointer;
+      padding-left: 1%;
     }
+  }
 
-    .log-button:hover {background-color: #c1c1c1;}
+  .log-button {
+    font-family: "Poppins", serif;
+    font-weight: 400;
 
-    .log-button:active {
-        background-color: #c1c1c1;
-        box-shadow: 0 3px #404040;
-        transform: translateY(4px);
-    }
+    margin-left: auto;
+    margin-right: 3%;
 
-    .user-buttons {
-        margin-left: auto;
-        margin-right: 3%;
+    width: 6em;
+    height: 40%;
 
-        display: flex;
-        justify-content:space-between;
-        align-items: center;
+    border-radius: 30px;
+    border: none;
+    background-color: #dddddd;
 
-        width: auto;
-        height: 100%;
-    }
+    box-shadow: 0 6px #535353;
+
+    cursor: pointer;
+  }
+
+  .log-button:hover {
+    background-color: #c1c1c1;
+  }
+
+  .log-button:active {
+    background-color: #c1c1c1;
+    box-shadow: 0 3px #404040;
+    transform: translateY(4px);
+  }
+
+  .user-buttons {
+    margin-left: auto;
+    margin-right: 3%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: auto;
+    height: 100%;
+  }
 }

@@ -1,4 +1,4 @@
-import "../css/UserPage.css"
+import "../css/UserPage.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
 
 const UserPage = () => {
-
   const navigate = useNavigate();
   const { userId, logout } = useAuth();
 
@@ -22,26 +21,22 @@ const UserPage = () => {
   const BOOKS_URL = `api/user/${userId}/books`;
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
-        const userResponse = await axios.get(USER_URL,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+        const userResponse = await axios.get(USER_URL, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUser(userResponse.data);
 
-        const booksResponse = await axios.get(BOOKS_URL,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-        setUserBookshelf(booksResponse.data)
-
+        const booksResponse = await axios.get(BOOKS_URL, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUserBookshelf(booksResponse.data);
       } catch (e: any) {
         console.log("Error getting user: ", e.response?.data || e.message);
 
         //invalid token
-        if (e.response?.status === 401 || e.response?.status === 403){
+        if (e.response?.status === 401 || e.response?.status === 403) {
           logout();
           navigate("/login");
         }
@@ -49,27 +44,27 @@ const UserPage = () => {
     };
 
     if (token && userId) {
-      fetchData().then()
+      fetchData().then();
     } else {
-      navigate("/")
+      navigate("/");
     }
   }, [token, userId, logout, navigate]);
 
   const removeBookFromShelf = (bookKey: string) => {
     setUserBookshelf((prevBooks) =>
-      prevBooks.filter((book) => book.key !== bookKey));
+      prevBooks.filter((book) => book.key !== bookKey),
+    );
   };
 
   const handleLogout = () => {
     logout();
     navigate("/");
-  }
+  };
 
   return (
-
     <div>
-      <Header/>
-      <Outlet/>
+      <Header />
+      <Outlet />
 
       <div className={"user-page-container"}>
         {user ? (
@@ -80,17 +75,15 @@ const UserPage = () => {
             <div className={"buttons"}>
               <button
                 className={"edit-button"}
-                onClick={() => navigate('/user/profile')}
-              >editar
+                onClick={() => navigate("/user/profile")}
+              >
+                editar
               </button>
 
-              <button
-                className={"edit-button"}
-                onClick={handleLogout}
-              >sair
+              <button className={"edit-button"} onClick={handleLogout}>
+                sair
               </button>
             </div>
-
           </div>
         ) : (
           <p>Carregando informações do usuário...</p>
@@ -98,15 +91,16 @@ const UserPage = () => {
 
         <div className={"books-grid"}>
           {userBookshelf.length > 0 ? (
-            <UserBookshelf books={userBookshelf} onDelete={removeBookFromShelf}/>
+            <UserBookshelf
+              books={userBookshelf}
+              onDelete={removeBookFromShelf}
+            />
           ) : (
             <p>Sua estante está vazia... adicione alguns livros a ela</p>
           )}
         </div>
       </div>
-
     </div>
-
   );
 };
 

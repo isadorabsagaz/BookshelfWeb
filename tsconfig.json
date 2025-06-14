@@ -5,12 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "target": "ES2015",           // Compilar para ES6
-    "lib": ["DOM", "ES2015"],     // Incluir as bibliotecas necessárias (Promise, async/await, etc.)
-    "strict": true,               // Habilitar verificações de tipo rigorosas (opcional, mas recomendado)
-    "esModuleInterop": true,      // Permite a importação de módulos CommonJS
-    "skipLibCheck": true          // Ignora a checagem de bibliotecas (opcional)
+    "target": "ES2015", // Compilar para ES6
+    "lib": ["DOM", "ES2015"], // Incluir as bibliotecas necessárias (Promise, async/await, etc.)
+    "strict": true, // Habilitar verificações de tipo rigorosas (opcional, mas recomendado)
+    "esModuleInterop": true, // Permite a importação de módulos CommonJS
+    "skipLibCheck": true // Ignora a checagem de bibliotecas (opcional)
   }
 }
-
-

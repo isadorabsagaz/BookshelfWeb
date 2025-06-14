@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { jwtDecode } from "jwt-decode";
 
 interface CustomJwtPayload {
@@ -52,8 +58,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useAuth = () =>{
+export const useAuth = () => {
   const context = useContext(AuthContext);
-  if(!context) throw new Error("No auth context.");
+  if (!context) throw new Error("No auth context.");
   return context;
-}
+};

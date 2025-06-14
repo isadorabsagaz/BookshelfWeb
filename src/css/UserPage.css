@@ -1,48 +1,48 @@
 .user-page-container {
-    margin: 0 2em;
+  margin: 0 2em;
 
-    .user-info {
-        margin: 10em 2em 2em 2em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+  .user-info {
+    margin: 10em 2em 2em 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-        .user-name {
-            font-size: 22px;
-            margin: 0;
-        }
-
-        .user-email {
-            font-size: 16px;
-            margin: 1em 0 0.5em 0;
-        }
-
-        .edit-button {
-            font-family: "Poppins", serif;
-            font-weight: 400;
-
-            width: fit-content;
-            height: 2em;
-            margin: 0 0.5em;
-
-            border-radius: 30px;
-            border: none;
-            background-color: #ccf1ea;
-
-            box-shadow: 0 5px #789e9c;
-
-            cursor: pointer;
-        }
-
-        .edit-button:hover {
-            background-color: #B1D6CD;
-        }
-
-        .edit-button:active {
-            background-color: #B1D6CD;
-            box-shadow: 0 3px #527876;
-            transform: translateY(4px);
-        }
+    .user-name {
+      font-size: 22px;
+      margin: 0;
     }
+
+    .user-email {
+      font-size: 16px;
+      margin: 1em 0 0.5em 0;
+    }
+
+    .edit-button {
+      font-family: "Poppins", serif;
+      font-weight: 400;
+
+      width: fit-content;
+      height: 2em;
+      margin: 0 0.5em;
+
+      border-radius: 30px;
+      border: none;
+      background-color: #ccf1ea;
+
+      box-shadow: 0 5px #789e9c;
+
+      cursor: pointer;
+    }
+
+    .edit-button:hover {
+      background-color: #b1d6cd;
+    }
+
+    .edit-button:active {
+      background-color: #b1d6cd;
+      box-shadow: 0 3px #527876;
+      transform: translateY(4px);
+    }
+  }
 }

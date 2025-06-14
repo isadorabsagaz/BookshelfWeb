@@ -5,9 +5,7 @@ import { toast } from "react-toastify";
 import bookshelfLogo from "../assets/BookshelfIcon.svg";
 import axios from "../services/api";
 
-
 const Header = () => {
-
   const navigate = useNavigate();
   const { userId } = useAuth();
 
@@ -23,7 +21,7 @@ const Header = () => {
     const downloadPromise = axios.get(PDF_URL, {
       responseType: "blob",
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -36,7 +34,7 @@ const Header = () => {
     try {
       const response = await downloadPromise;
 
-      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const blob = new Blob([response.data], { type: "application/pdf" });
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
@@ -46,7 +44,6 @@ const Header = () => {
       link.click();
       link.remove();
       window.URL.revokeObjectURL(url);
-
     } catch (err: any) {
       console.log("Erro ao baixar PDF: ", err.response?.data || err.message);
       toast.error("Erro ao baixar o PDF");
@@ -56,36 +53,30 @@ const Header = () => {
   return (
     <div>
       <header className="app-header">
-
-        <div className="logo"
-             onClick={() => navigate("/")}>
-
-          <img src={bookshelfLogo} alt="bookshlf icon"/>
+        <div className="logo" onClick={() => navigate("/")}>
+          <img src={bookshelfLogo} alt="bookshlf icon" />
           <p className={"title"}>Bookshelf</p>
-
         </div>
 
-        {!userId ?
-          <button className={"log-button"}
-                  onClick={() => navigate('/login')}
-          >Entrar
+        {!userId ? (
+          <button className={"log-button"} onClick={() => navigate("/login")}>
+            Entrar
           </button>
-          :
+        ) : (
           <>
             <div className={"user-buttons"}>
-              <button className={"log-button"}
-                      onClick={() => navigate('/user')}
+              <button
+                className={"log-button"}
+                onClick={() => navigate("/user")}
               >
                 Seu perfil
               </button>
-              <button className={"log-button"}
-                      onClick={handleDownloadPDF}
-              >
+              <button className={"log-button"} onClick={handleDownloadPDF}>
                 PDF
               </button>
             </div>
           </>
-        }
+        )}
       </header>
     </div>
   );
