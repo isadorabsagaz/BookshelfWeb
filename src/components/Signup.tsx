@@ -38,13 +38,13 @@ const Signup = () => {
                     {error && <p>{error}</p>}
                 </div>
 
-                <p>Sign up to Bookshelf</p>
+                <p>Inscreva-se na Bookshelf</p>
 
                 <form className={"log-sub-form"} onSubmit={handleSignup}>
 
                     <input className={"log-sub-input"}
                            type="text"
-                           placeholder="Name"
+                           placeholder="Nome"
                            value={name}
                            onChange={(e) => setName(e.target.value)}
                            required
@@ -60,14 +60,14 @@ const Signup = () => {
 
                     <input className={"log-sub-input"}
                            type="password"
-                           placeholder="Password"
+                           placeholder="Senha"
                            value={password}
                            onChange={(e) => setPassword(e.target.value)}
                            required
                     />
 
                     <button className={"log-sub-button"}
-                            type="submit">Sign up
+                            type="submit">Inscreva-se
                     </button>
 
                 </form>

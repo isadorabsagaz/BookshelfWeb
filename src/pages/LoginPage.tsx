@@ -16,8 +16,8 @@ const LoginPage = () => {
                 </div>
 
                 <div className={"signup-div"}>
-                    <p>Don´t have an account yet?</p>
-                    <Link to="/signup" className={"click-here-button"}>Click here</Link>
+                    <p>Não possui uma conta ainda?</p>
+                    <Link to="/signup" className={"click-here-button"}>Clique aqui</Link>
                 </div>
 
             </div>

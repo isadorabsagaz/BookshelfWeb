@@ -25,7 +25,7 @@ const SearchBar = ({onSearch}: SearchBarProps) => {
 
             <input className={"search-box"}
                    type="text"
-                   placeholder="Search..."
+                   placeholder="Pesquise..."
                    value={input}
                    onChange={(e) => setInput(e.target.value)}
                    onKeyDown={handleKeyDown}
