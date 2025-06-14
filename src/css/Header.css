@@ -57,4 +57,16 @@
         box-shadow: 0 3px #404040;
         transform: translateY(4px);
     }
+
+    .user-buttons {
+        margin-left: auto;
+        margin-right: 3%;
+
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+
+        width: auto;
+        height: 100%;
+    }
 }

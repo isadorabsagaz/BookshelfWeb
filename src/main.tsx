@@ -9,6 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import UserPage from "./pages/UserPage";
 import ProfilePage from "./pages/ProfilePage.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <RouterProvider router={router}/>
+        <AuthProvider>
+            <RouterProvider router={router}/>
+        </AuthProvider>
     </StrictMode>,
 )

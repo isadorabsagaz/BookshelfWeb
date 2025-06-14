@@ -1,103 +1,113 @@
 import "../css/UserPage.css"
-import {Outlet, useNavigate} from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import {useEffect, useState} from "react";
-import {UserModel} from "../models/user-model";
-import {BookModel} from "../models/book-model";
+import { useEffect, useState } from "react";
+import { UserModel } from "../models/user-model";
+import { BookModel } from "../models/book-model";
 import UserBookshelf from "../components/UserBookshelf";
+import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
 
 const UserPage = () => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { userId, logout } = useAuth();
 
-    const [user, setUser] = useState<UserModel>();
-    const [userBookshelf, setUserBookshelf] = useState<BookModel[]>([]);
+  const [user, setUser] = useState<UserModel>();
+  const [userBookshelf, setUserBookshelf] = useState<BookModel[]>([]);
 
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-    const USER_URL = `api/user/${userId}`;
-    const BOOKS_URL = `api/user/${userId}/books`;
+  const USER_URL = `api/user/${userId}`;
+  const BOOKS_URL = `api/user/${userId}/books`;
 
-    useEffect(() => {
+  useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const userResponse = await axios.get(USER_URL,
-                    {
-                        headers: {Authorization: `Bearer ${token}`},
-                    });
-                setUser(userResponse.data);
+    const fetchData = async () => {
+      try {
+        const userResponse = await axios.get(USER_URL,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+        setUser(userResponse.data);
 
-                const booksResponse = await axios.get(BOOKS_URL,
-                    {
-                        headers: {Authorization: `Bearer ${token}`},
-                    });
-                console.log(booksResponse.data);
-                setUserBookshelf(booksResponse.data)
+        const booksResponse = await axios.get(BOOKS_URL,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+        setUserBookshelf(booksResponse.data)
 
-            } catch (e: any) {
-                console.log("Error getting user: ", e.response?.data || e.message);
-            }
-        };
+      } catch (e: any) {
+        console.log("Error getting user: ", e.response?.data || e.message);
 
-        if (token) {
-            fetchData().then()
+        //invalid token
+        if (e.response?.status === 401 || e.response?.status === 403){
+          logout();
+          navigate("/login");
         }
-    }, [token]);
-
-    const removeBookFromShelf = (bookKey: string) => {
-        setUserBookshelf((prevBooks) =>
-            prevBooks.filter((book) => book.key !== bookKey));
+      }
     };
 
-    const handleLogOut = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        navigate("/");
-    };
+    if (token && userId) {
+      fetchData().then()
+    } else {
+      navigate("/")
+    }
+  }, [token, userId, logout, navigate]);
 
-    return (
+  const removeBookFromShelf = (bookKey: string) => {
+    setUserBookshelf((prevBooks) =>
+      prevBooks.filter((book) => book.key !== bookKey));
+  };
 
-        <div>
-            <Header/>
-            <Outlet/>
-            <div className={"user-page-container"}>
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  }
 
-                {user ? (
-                    <div className={"user-info"}>
-                        <p className={"user-name"}>{user.name}'s shelf</p>
-                        <p className={"user-email"}>{user.email}</p>
+  return (
 
-                        <div className={"buttons"}>
-                            <button className={"edit-button"}
-                                    onClick={() => navigate('/user/profile')}
-                            >edit
-                            </button>
+    <div>
+      <Header/>
+      <Outlet/>
 
-                            <button className={"edit-button"}
-                                    onClick={handleLogOut}
-                            >log out
-                            </button>
-                        </div>
+      <div className={"user-page-container"}>
+        {user ? (
+          <div className={"user-info"}>
+            <p className={"user-name"}>estante de "{user.name}"</p>
+            <p className={"user-email"}>{user.email}</p>
 
-                    </div>
-                ) : (<p>User info not available</p>)}
+            <div className={"buttons"}>
+              <button
+                className={"edit-button"}
+                onClick={() => navigate('/user/profile')}
+              >editar
+              </button>
 
-
-                <div className={"books-grid"}>
-                    {userBookshelf.length > 0 ? (
-                        <UserBookshelf books={userBookshelf} onDelete={removeBookFromShelf}/>
-                    ) : (
-                        <p>Your shelf is empty... add some books to it</p>
-                    )}
-                </div>
+              <button
+                className={"edit-button"}
+                onClick={handleLogout}
+              >sair
+              </button>
             </div>
 
-        </div>
+          </div>
+        ) : (
+          <p>Carregando informações do usuário...</p>
+        )}
 
-    );
+        <div className={"books-grid"}>
+          {userBookshelf.length > 0 ? (
+            <UserBookshelf books={userBookshelf} onDelete={removeBookFromShelf}/>
+          ) : (
+            <p>Sua estante está vazia... adicione alguns livros a ela</p>
+          )}
+        </div>
+      </div>
+
+    </div>
+
+  );
 };
 
 export default UserPage;

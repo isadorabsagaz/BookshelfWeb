@@ -2,14 +2,15 @@ import "../css/Header.css";
 import bookshelfLogo from "../assets/BookshelfIcon.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/api";
+import { useAuth } from "../contexts/AuthContext.tsx";
 
 
 const Header = () => {
 
   const navigate = useNavigate();
+  const { userId } = useAuth();
 
   const handleDownloadPDF = async () => {
-    const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     const PDF_URL = `api/user/${userId}/books/pdf`;
 
@@ -20,13 +21,13 @@ const Header = () => {
 
     try {
       const response = await axios.get(PDF_URL, {
-          responseType: "blob",
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
+        responseType: "blob",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
       });
 
-      const blob = new Blob([response.data], {type: 'application/pdf'});
+      const blob = new Blob([response.data], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
@@ -37,7 +38,7 @@ const Header = () => {
       link.remove();
       window.URL.revokeObjectURL(url);
 
-    } catch (err: any){
+    } catch (err: any) {
       console.log("Erro ao baixar PDF: ", err.response?.data || err.message);
       alert("Erro ao baixar o PDF");
     }
@@ -54,15 +55,28 @@ const Header = () => {
           <p className={"title"}>Bookshelf</p>
 
         </div>
-        <button className={"log-button"}
-                onClick={() => navigate('/login')}
-        >Log in
-        </button>
-        <button className={"log-button"}
-                onClick={handleDownloadPDF}
-        >
-          PDF
-        </button>
+
+        {!userId ?
+          <button className={"log-button"}
+                  onClick={() => navigate('/login')}
+          >Entrar
+          </button>
+          :
+          <>
+            <div className={"user-buttons"}>
+              <button className={"log-button"}
+                      onClick={() => navigate('/user')}
+              >
+                Seu perfil
+              </button>
+              <button className={"log-button"}
+                      onClick={handleDownloadPDF}
+              >
+                PDF
+              </button>
+            </div>
+          </>
+        }
       </header>
     </div>
   );

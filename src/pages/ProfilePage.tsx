@@ -2,6 +2,7 @@ import "../css/ProfilePage.css";
 import Header from "../components/Header.tsx";
 import {Outlet} from "react-router-dom";
 import React, {useState} from "react";
+//import { useAuth } from "../contexts/AuthContext.tsx";
 //import axios from "axios";
 
 //const navigate = useNavigate();
@@ -9,10 +10,10 @@ import React, {useState} from "react";
 const ProfilePage = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    //const {userId} = useAuth();
     //const [error, setError] = useState('');
 
    // const token = localStorage.getItem("token");
-   // const userId = localStorage.getItem("userId");
 
     //const UPDATE_URL = `/api/user/${userId}`;
 
