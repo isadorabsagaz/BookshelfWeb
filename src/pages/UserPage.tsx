@@ -7,10 +7,12 @@ import { BookModel } from "../models/book-model";
 import UserBookshelf from "../components/UserBookshelf";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
+import { useTranslation } from "react-i18next";
 
 const UserPage = () => {
   const navigate = useNavigate();
   const { userId, logout } = useAuth();
+  const {t} = useTranslation()
 
   const [user, setUser] = useState<UserModel>();
   const [userBookshelf, setUserBookshelf] = useState<BookModel[]>([]);
@@ -69,7 +71,7 @@ const UserPage = () => {
       <div className={"user-page-container"}>
         {user ? (
           <div className={"user-info"}>
-            <p className={"user-name"}>estante de "{user.name}"</p>
+            <p className={"user-name"}>{t('shelf')}"{user.name}"</p>
             <p className={"user-email"}>{user.email}</p>
 
             <div className={"buttons"}>
@@ -77,16 +79,16 @@ const UserPage = () => {
                 className={"edit-button"}
                 onClick={() => navigate("/user/profile")}
               >
-                editar
+                {t('edit_button')}
               </button>
 
               <button className={"edit-button"} onClick={handleLogout}>
-                sair
+                {t('exit_button')}
               </button>
             </div>
           </div>
         ) : (
-          <p>Carregando informações do usuário...</p>
+          <p>{t('loading_user')}</p>
         )}
 
         <div className={"books-grid"}>
@@ -96,7 +98,7 @@ const UserPage = () => {
               onDelete={removeBookFromShelf}
             />
           ) : (
-            <p>Sua estante está vazia... adicione alguns livros a ela</p>
+            <p>{t('empty_shelf')}</p>
           )}
         </div>
       </div>

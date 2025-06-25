@@ -5,11 +5,13 @@ import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ProfilePage = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { userId } = useAuth();
+  const {t} = useTranslation()
 
   const navigate = useNavigate();
 
@@ -39,12 +41,12 @@ const ProfilePage = () => {
       <Outlet/>
 
       <div className={"edit-profile"}>
-        Edite seu perfil:
+        {t('edit_profile')}
         <form className={"update-form"} onSubmit={handleUpdate}>
           <input
             className={"update-input"}
             type="text"
-            placeholder={"Novo nome"}
+            placeholder={t('new_name')}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -52,13 +54,13 @@ const ProfilePage = () => {
           <input
             className={"update-input"}
             type="password"
-            placeholder={"Nova senha"}
+            placeholder={t('new_password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button className={"update-button"} type="submit">
-            salve as alterações
+            {t('save_changes')}
           </button>
         </form>
       </div>

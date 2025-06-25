@@ -5,6 +5,7 @@ import noCoverImage from "../assets/noCoverImage.jpg";
 import axios from "../services/api.ts";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type BookListProps = {
   books: BookModel[];
@@ -12,6 +13,8 @@ type BookListProps = {
 
 const BookList = ({ books }: BookListProps) => {
   const { userId } = useAuth();
+  const {t} = useTranslation()
+
   const handleAddBook = async (book: BookModel) => {
     try {
       const token = localStorage.getItem("token");
@@ -46,7 +49,7 @@ const BookList = ({ books }: BookListProps) => {
 
             <div className={"book-info"}>
               <p className={"title"}>{book.title}</p>
-              <p className={"author"}>Autor: {book.author_name?.[0]}</p>
+              <p className={"author"}> {t('author')}: {book.author_name?.[0]}</p>
               <p className={"year"}>{book.first_publish_year}</p>
 
               <div>
@@ -55,7 +58,7 @@ const BookList = ({ books }: BookListProps) => {
                   type="button"
                   onClick={() => handleAddBook(book)}
                 >
-                  adicionar
+                  {t('add')}
                 </button>
               </div>
             </div>

@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { searchBooks } from "./services/openLibrary.ts";
 import Header from "./components/Header.tsx";
 import { Outlet } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [books, setBooks] = useState<BookModel[]>([]);
   const [query, setQuery] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!query.trim()) {
@@ -28,7 +30,7 @@ function App() {
         <Header />
         <Outlet />
         <div className={"app-container"}>
-          <p>Encontre seus livros</p>
+          <p>{t('find_books')}</p>
           <SearchBar onSearch={setQuery} />
         </div>
 

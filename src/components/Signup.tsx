@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/api";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const SIGNUP_URL = "/api/auth/signup";
 
@@ -12,6 +13,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const {t} = useTranslation()
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,13 +40,13 @@ const Signup = () => {
       <div className={"log-sub-container"}>
         <div className={"error"}>{error && <p>{error}</p>}</div>
 
-        <p>Inscreva-se na Bookshelf</p>
+        <p>{t('signup_title')}</p>
 
         <form className={"log-sub-form"} onSubmit={handleSignup}>
           <input
             className={"log-sub-input"}
             type="text"
-            placeholder="Nome"
+            placeholder="Username"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -62,14 +64,14 @@ const Signup = () => {
           <input
             className={"log-sub-input"}
             type="password"
-            placeholder="Senha"
+            placeholder={t('password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
           <button className={"log-sub-button"} type="submit">
-            Inscreva-se
+            {t('subscribe')}
           </button>
         </form>
       </div>

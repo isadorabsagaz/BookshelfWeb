@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/SearchBar.css";
 import searchIcon from "../assets/searchIcon.png";
+import { useTranslation } from "react-i18next";
 
 type SearchBarProps = {
   onSearch: (query: string) => void;
@@ -8,6 +9,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [input, setInput] = useState<string>("");
+  const { t } = useTranslation();
 
   const handleSearch = () => {
     onSearch(input);
@@ -24,7 +26,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
       <input
         className={"search-box"}
         type="text"
-        placeholder="Pesquise..."
+        placeholder={t('search')}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}

@@ -4,10 +4,12 @@ import { useAuth } from "../contexts/AuthContext.tsx";
 import { toast } from "react-toastify";
 import bookshelfLogo from "../assets/BookshelfIcon.svg";
 import axios from "../services/api";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
   const { userId } = useAuth();
+  const {t} = useTranslation()
 
   const handleDownloadPDF = async () => {
     const token = localStorage.getItem("token");
@@ -60,7 +62,7 @@ const Header = () => {
 
         {!userId ? (
           <button className={"log-button"} onClick={() => navigate("/login")}>
-            Entrar
+            {t('login_button')}
           </button>
         ) : (
           <>
@@ -69,7 +71,7 @@ const Header = () => {
                 className={"log-button"}
                 onClick={() => navigate("/user")}
               >
-                Seu perfil
+                {t('your_profile')}
               </button>
               <button className={"log-button"} onClick={handleDownloadPDF}>
                 PDF

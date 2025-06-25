@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import axios from "../services/api";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const LOGIN_URL = "/api/auth/login";
 
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const {t} = useTranslation()
   const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +41,7 @@ const Login = () => {
       <div className={"log-sub-container"}>
         <div className={"error"}>{error && <p>{error}</p>}</div>
 
-        <p>Logar na sua conta</p>
+        <p>{t('login_title')}</p>
 
         <form className={"log-sub-form"} onSubmit={handleLogin}>
           <input
@@ -54,14 +56,14 @@ const Login = () => {
           <input
             className={"log-sub-input"}
             type="password"
-            placeholder="Senha"
+            placeholder={t('password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
           <button className={"log-sub-button"} type="submit">
-            Entrar
+            {t('login_button')}
           </button>
         </form>
       </div>

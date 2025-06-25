@@ -5,6 +5,7 @@ import noCoverImage from "../assets/noCoverImage.jpg";
 import axios from "../services/api";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type BookshelfProps = {
   books: BookModel[];
@@ -13,6 +14,8 @@ type BookshelfProps = {
 
 const UserBookshelf = ({ books, onDelete }: BookshelfProps) => {
   const { userId } = useAuth();
+  const {t} = useTranslation()
+
   const handleDeleteBook = async (book: BookModel) => {
     try {
       const token = localStorage.getItem("token");
@@ -59,7 +62,7 @@ const UserBookshelf = ({ books, onDelete }: BookshelfProps) => {
                   type="button"
                   onClick={() => handleDeleteBook(book)}
                 >
-                  deletar
+                  {t('delete')}
                 </button>
               </div>
             </div>
