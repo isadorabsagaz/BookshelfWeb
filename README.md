@@ -34,7 +34,6 @@ Fornecer uma interface moderna e responsiva para que o usuário possa interagir 
 ### Passos
 
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
